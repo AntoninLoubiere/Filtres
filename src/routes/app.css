@@ -1,0 +1,31 @@
+:root {
+	--main-color: rgb(0, 102, 255);
+	--accent: rgb(180, 0, 0);
+}
+
+.plot-line {
+	fill: none;
+	stroke: var(--main-color);
+	stroke-width: 1.5px;
+	clip-path: path("M -3 -4 l 0 108 l 306 0 l 0 -108 z");
+}
+
+.plot-accent {
+	stroke: var(--accent);
+}
+
+.tick {
+	fill: none;
+	stroke: #444;
+	stroke-width: 0.4px;
+}
+
+.axis-tick {
+	font-size: 3px;
+	align-items: center;
+}
+
+.axis-label {
+	text-anchor: middle;
+	font-size: 3.5px;
+}
