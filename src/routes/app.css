@@ -1,6 +1,17 @@
 :root {
-	--main-color: rgb(0, 102, 255);
-	--accent: rgb(180, 0, 0);
+	--base-margin: 0.25rem 0.5rem;
+	--main-color: #06b6d4;
+	--accent: #dc2626;
+	--accent-bis: #10b981;
+	--bg-color: rgb(255, 255, 255);
+	--dashboard-size: 250px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+
+	font-family: sans-serif;
 }
 
 .plot-line {

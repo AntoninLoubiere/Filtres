@@ -17,9 +17,9 @@ import { linspace } from '$lib/utils';
 	$: resultOnde = $filter.apply($onde);
 </script>
 
-<Graph ratio={3}>
+<Graph ratio={3} title="Sortie">
 	<polyline points={pointsToPath($time, ondeTime($onde, $time), yMin, yMax, 3)} class="plot-line"></polyline>
 	<polyline points={pointsToPath($time, ondeTime($resultOnde, $time), yMin, yMax, 3)} class="plot-line plot-accent"></polyline>
 	<XAxis x={$time} title="Temps (s)"></XAxis>
-	<YAxis y_min={yMin} y_max={yMax} title="Amplitude (V)"></YAxis>
+	<YAxis min_y={yMin} max_y={yMax} title="Amplitude (V)"></YAxis>
 </Graph>

@@ -22,11 +22,10 @@
 </script>
 
 <div>
-	<h1>Diagramme de Bode</h1>
-	<Graph>
+	<Graph title="Diagramme de Bode">
 		<Harmos baseX={$db} x={harmoFreq} y={$harmosGain} min_y={minY} max_y={maxY} opacity={getHarmosNormalisedAmp($onde)} log={true}></Harmos>
 		<polyline points={pointsToLogPath($db, $gain, minY, maxY)} class="plot-line" />
 		<XAxis x={$db} title="Fréquence (log)" />
-		<YAxis y_min={minY * 20} y_max={maxY * 20} title="Gain (dB)" />
+		<YAxis min_y={minY * 20} max_y={maxY * 20} title="Gain (dB)" />
 	</Graph>
 </div>

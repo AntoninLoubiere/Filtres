@@ -13,14 +13,16 @@
 
 	$: harmoFreq = getHarmosFreqs($onde);
 	$: harmosGain = $filter.gain(harmoFreq);
+
+	$: h0 = $filter.h0;
+	$: maxY = Math.abs($h0) * 1.1; // +10%;
 </script>
 
 <div>
-	<h1>Gain</h1>
-	<Graph>
-		<Harmos baseX={$freqs} x={harmoFreq} y={$harmosGain} min_y={0} max_y={1} opacity={getHarmosNormalisedAmp($onde)}></Harmos>
-		<polyline points={pointsToPath($freqs, $gain, 0, 1)} class="plot-line" />
+	<Graph title="Gain">
+		<Harmos baseX={$freqs} x={harmoFreq} y={$harmosGain} min_y={0} max_y={maxY} opacity={getHarmosNormalisedAmp($onde)}></Harmos>
+		<polyline points={pointsToPath($freqs, $gain, 0, maxY)} class="plot-line" />
 		<XAxis x={$freqs} title="Fréquence (Hz)" />
-		<YAxis y_min={0} y_max={1} title="Gain" />
+		<YAxis min_y={0} max_y={maxY} title="Gain" />
 	</Graph>
 </div>
