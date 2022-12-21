@@ -13,11 +13,11 @@
 	<GainDb />
 	<Phase />
 	<div class="row">
-		<Onde></Onde>
+		<Onde />
 	</div>
 </div>
 
-<Dashboard></Dashboard>
+<Dashboard />
 
 <style>
 	.grid {

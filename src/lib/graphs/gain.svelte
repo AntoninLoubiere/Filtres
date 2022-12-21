@@ -9,7 +9,7 @@
 	import YAxis from './yAxis.svelte';
 
 	let freqs = linspace(0, 10000);
-	let gain = $filter.gain($freqs);
+	$: gain = $filter.gain($freqs);
 
 	$: harmoFreq = getHarmosFreqs($onde);
 	$: harmosGain = $filter.gain(harmoFreq);
@@ -20,7 +20,14 @@
 
 <div>
 	<Graph title="Gain">
-		<Harmos baseX={$freqs} x={harmoFreq} y={$harmosGain} min_y={0} max_y={maxY} opacity={getHarmosNormalisedAmp($onde)}></Harmos>
+		<Harmos
+			baseX={$freqs}
+			x={harmoFreq}
+			y={$harmosGain}
+			min_y={0}
+			max_y={maxY}
+			opacity={getHarmosNormalisedAmp($onde)}
+		/>
 		<polyline points={pointsToPath($freqs, $gain, 0, maxY)} class="plot-line" />
 		<XAxis x={$freqs} title="Fréquence (Hz)" />
 		<YAxis min_y={0} max_y={maxY} title="Gain" />

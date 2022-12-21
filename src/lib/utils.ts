@@ -22,14 +22,13 @@ export function logspace(start: number, end: number): Readable<number[]> {
 	});
 }
 
-
 const numberFormatterCompact = Intl.NumberFormat(undefined, {
 	notation: 'compact'
-})
+});
 
 const numberFormatterSci = Intl.NumberFormat(undefined, {
 	notation: 'scientific'
-})
+});
 
 export function formatNumberAxis(x: number) {
 	if (Math.abs(x) > 0.01 || x == 0) {
@@ -37,23 +36,23 @@ export function formatNumberAxis(x: number) {
 	}
 
 	if (Math.abs(x) >= 1e-3) {
-		return (x / 1e-3).toLocaleString() + " m";
+		return (x / 1e-3).toLocaleString() + ' m';
 	}
 
 	if (Math.abs(x) >= 1e-6) {
-		return (x / 1e-6).toLocaleString() + " µ";
+		return (x / 1e-6).toLocaleString() + ' µ';
 	}
 
 	if (Math.abs(x) >= 1e-9) {
-		return (x / 1e-9).toLocaleString() + " n";
+		return (x / 1e-9).toLocaleString() + ' n';
 	}
 
 	if (Math.abs(x) >= 1e-12) {
-		return (x / 1e-12).toLocaleString() + " p";
+		return (x / 1e-12).toLocaleString() + ' p';
 	}
 
 	if (Math.abs(x) >= 1e-15) {
-		return (x / 1e-15).toLocaleString() + " f";
+		return (x / 1e-15).toLocaleString() + ' f';
 	}
 
 	return numberFormatterSci.format(x);

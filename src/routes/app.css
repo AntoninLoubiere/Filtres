@@ -18,7 +18,7 @@ body {
 	fill: none;
 	stroke: var(--main-color);
 	stroke-width: 1.5px;
-	clip-path: path("M -3 -4 l 0 108 l 306 0 l 0 -108 z");
+	clip-path: path('M -3 -4 l 0 108 l 306 0 l 0 -108 z');
 }
 
 .plot-accent {

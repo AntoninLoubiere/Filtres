@@ -10,7 +10,7 @@
 
 	let db = linspace(-2, 7);
 	let log_freqs = logspace(-2, 7);
-	let gain = $filter.gain($log_freqs);
+	$: gain = $filter.gain($log_freqs);
 
 	let minY = -5;
 	let maxY = 0.2;
@@ -18,12 +18,19 @@
 
 	$: harmoFreq = getHarmosFreqs($onde);
 	$: harmosGain = $filter.gain(harmoFreq);
-
 </script>
 
 <div>
 	<Graph title="Diagramme de Bode">
-		<Harmos baseX={$db} x={harmoFreq} y={$harmosGain} min_y={minY} max_y={maxY} opacity={getHarmosNormalisedAmp($onde)} log={true}></Harmos>
+		<Harmos
+			baseX={$db}
+			x={harmoFreq}
+			y={$harmosGain}
+			min_y={minY}
+			max_y={maxY}
+			opacity={getHarmosNormalisedAmp($onde)}
+			log={true}
+		/>
 		<polyline points={pointsToLogPath($db, $gain, minY, maxY)} class="plot-line" />
 		<XAxis x={$db} title="Fréquence (log)" />
 		<YAxis min_y={minY * 20} max_y={maxY * 20} title="Gain (dB)" />

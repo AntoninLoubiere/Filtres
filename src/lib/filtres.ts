@@ -45,15 +45,15 @@ export class LowPassFirstFilter extends BaseFilter {
 	apply(onde: Onde): Readable<Onde> {
 		const o: Onde = {
 			freq: onde.freq,
-			harmo: new Array(onde.harmo.length),
-		}
+			harmo: new Array(onde.harmo.length)
+		};
 		for (let i = 0; i < onde.harmo.length; i++) {
 			o.harmo[i] = new Array(2);
 		}
 		return derived([this.f0, this.h0], ([f0, h0]) => {
 			for (let i = 0; i < onde.harmo.length; i++) {
-				let x = onde.freq * i / f0;
-				o.harmo[i][0] = h0 / Math.sqrt(1 + x * x) * onde.harmo[i][0];
+				let x = (onde.freq * i) / f0;
+				o.harmo[i][0] = (h0 / Math.sqrt(1 + x * x)) * onde.harmo[i][0];
 				o.harmo[i][1] = onde.harmo[i][1] - Math.atan(x);
 			}
 			return o;
@@ -88,18 +88,18 @@ export class HighPassFirstFilter extends BaseFilter {
 		});
 	}
 
-		apply(onde: Onde, ): Readable<Onde> {
+	apply(onde: Onde): Readable<Onde> {
 		const o: Onde = {
 			freq: onde.freq,
-			harmo: new Array(onde.harmo.length),
-		}
+			harmo: new Array(onde.harmo.length)
+		};
 		for (let i = 0; i < onde.harmo.length; i++) {
 			o.harmo[i] = new Array(2);
 		}
 		return derived([this.f0, this.h0], ([f0, h0]) => {
 			for (let i = 0; i < onde.harmo.length; i++) {
-				let x = onde.freq * i / f0;
-				o.harmo[i][0] = x * h0 / Math.sqrt(1 + x * x) * onde.harmo[i][0];
+				let x = (onde.freq * i) / f0;
+				o.harmo[i][0] = ((x * h0) / Math.sqrt(1 + x * x)) * onde.harmo[i][0];
 				o.harmo[i][1] = onde.harmo[i][1] - Math.atan(x) + Math.PI / 2;
 			}
 			return o;

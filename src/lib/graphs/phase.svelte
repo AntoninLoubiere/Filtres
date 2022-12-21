@@ -15,8 +15,8 @@
 	$: stPhase = $phase[0];
 	$: endPhase = $phase[$phase.length - 1];
 
-	$: minY = stPhase == endPhase ? endPhase - Math.PI / 2 : endPhase
-	$: maxY = stPhase == endPhase ? stPhase + Math.PI / 2 : stPhase
+	$: minY = stPhase == endPhase ? endPhase - Math.PI / 2 : endPhase;
+	$: maxY = stPhase == endPhase ? stPhase + Math.PI / 2 : stPhase;
 
 	$: harmoFreq = getHarmosFreqs($onde);
 	$: harmosPhase = $filter.phase(harmoFreq);
@@ -24,7 +24,14 @@
 
 <div>
 	<Graph title="Phase">
-		<Harmos baseX={$db} x={getHarmosFreqsLog($onde)} y={$harmosPhase} min_y={minY} max_y={maxY} opacity={getHarmosNormalisedAmp($onde)}></Harmos>
+		<Harmos
+			baseX={$db}
+			x={getHarmosFreqsLog($onde)}
+			y={$harmosPhase}
+			min_y={minY}
+			max_y={maxY}
+			opacity={getHarmosNormalisedAmp($onde)}
+		/>
 		<polyline points={pointsToPath($db, $phase, minY, maxY)} class="plot-line" />
 		<XAxis x={$db} title="Fréquence (log)" />
 		<YAxis min_y={(minY * 180) / Math.PI} max_y={(maxY * 180) / Math.PI} title="Phase (°)" />
