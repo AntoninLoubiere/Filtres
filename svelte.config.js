@@ -10,7 +10,7 @@ const config = {
 			assets: 'docs'
 		}),
 		paths: {
-			base: '/physics-simulation'
+			base: '/filtres'
 		}
 	}
 };
