@@ -10,9 +10,9 @@ export abstract class BaseFilter {
 		this.h0 = writable(h0);
 	}
 
-	abstract gain(freqs: number[]): Readable<number[]>;
-	abstract phase(freqs: number[]): Readable<number[]>;
-	abstract apply(onde: Onde): Readable<Onde>;
+	abstract gain(freqs: Readable<number[]>): Readable<number[]>;
+	abstract phase(freqs: Readable<number[]>): Readable<number[]>;
+	abstract apply(onde: Readable<Onde>): Readable<Onde>;
 }
 
 export class LowPassFirstFilter extends BaseFilter {
@@ -20,9 +20,11 @@ export class LowPassFirstFilter extends BaseFilter {
 		super(f0, h0);
 	}
 
-	gain(freqs: number[]): Readable<number[]> {
-		let a = new Array(freqs.length);
-		return derived([this.f0, this.h0], ([f0, h0]) => {
+	gain(freqs: Readable<number[]>): Readable<number[]> {
+		let a = new Array(0);
+		return derived([freqs, this.f0, this.h0], ([freqs, f0, h0]) => {
+			if (a.length != freqs.length) a = new Array(freqs.length);
+
 			for (let i = 0; i < freqs.length; i++) {
 				let x = freqs[i] / f0;
 				a[i] = h0 / Math.sqrt(1 + x * x);
@@ -31,9 +33,10 @@ export class LowPassFirstFilter extends BaseFilter {
 		});
 	}
 
-	phase(freqs: number[]): Readable<number[]> {
-		let a = new Array(freqs.length);
-		return derived(this.f0, (f0) => {
+	phase(freqs: Readable<number[]>): Readable<number[]> {
+		let a = new Array(0);
+		return derived([freqs, this.f0], ([freqs, f0]) => {
+			if (a.length != freqs.length) a = new Array(freqs.length);
 			for (let i = 0; i < freqs.length; i++) {
 				let x = freqs[i] / f0;
 				a[i] = -Math.atan(x);
@@ -42,15 +45,20 @@ export class LowPassFirstFilter extends BaseFilter {
 		});
 	}
 
-	apply(onde: Onde): Readable<Onde> {
-		const o: Onde = {
-			freq: onde.freq,
-			harmo: new Array(onde.harmo.length)
-		};
-		for (let i = 0; i < onde.harmo.length; i++) {
-			o.harmo[i] = new Array(2);
-		}
-		return derived([this.f0, this.h0], ([f0, h0]) => {
+	apply(onde: Readable<Onde>): Readable<Onde> {
+		let harmo = new Array(0);
+		return derived([onde, this.f0, this.h0], ([onde, f0, h0]) => {
+			if (harmo.length != onde.harmo.length) {
+				harmo = new Array(onde.harmo.length);
+				for (let i = 0; i < onde.harmo.length; i++) {
+					harmo[i] = new Array(2);
+				}
+			}
+			const o: Onde = {
+				freq: onde.freq,
+				harmo
+			};
+
 			for (let i = 0; i < onde.harmo.length; i++) {
 				let x = (onde.freq * i) / f0;
 				o.harmo[i][0] = (h0 / Math.sqrt(1 + x * x)) * onde.harmo[i][0];
@@ -66,9 +74,11 @@ export class HighPassFirstFilter extends BaseFilter {
 		super(f0, h0);
 	}
 
-	gain(freqs: number[]): Readable<number[]> {
-		let a = new Array(freqs.length);
-		return derived([this.f0, this.h0], ([f0, h0]) => {
+	gain(freqs: Readable<number[]>): Readable<number[]> {
+		let a = new Array(0);
+		return derived([freqs, this.f0, this.h0], ([freqs, f0, h0]) => {
+			if (a.length != freqs.length) a = new Array(freqs.length);
+
 			for (let i = 0; i < freqs.length; i++) {
 				let x = freqs[i] / f0;
 				a[i] = (x * h0) / Math.sqrt(1 + x * x);
@@ -77,26 +87,32 @@ export class HighPassFirstFilter extends BaseFilter {
 		});
 	}
 
-	phase(freqs: number[]): Readable<number[]> {
-		let a = new Array(freqs.length);
-		return derived(this.f0, (f0) => {
+	phase(freqs: Readable<number[]>): Readable<number[]> {
+		let a = new Array(0);
+		return derived([freqs, this.f0], ([freqs, f0]) => {
+			if (a.length != freqs.length) a = new Array(freqs.length);
 			for (let i = 0; i < freqs.length; i++) {
 				let x = freqs[i] / f0;
-				a[i] = Math.PI / 2 - Math.atan(x * x);
+				a[i] = Math.PI / 2 - Math.atan(x);
 			}
 			return a;
 		});
 	}
 
-	apply(onde: Onde): Readable<Onde> {
-		const o: Onde = {
-			freq: onde.freq,
-			harmo: new Array(onde.harmo.length)
-		};
-		for (let i = 0; i < onde.harmo.length; i++) {
-			o.harmo[i] = new Array(2);
-		}
-		return derived([this.f0, this.h0], ([f0, h0]) => {
+	apply(onde: Readable<Onde>): Readable<Onde> {
+		let harmo = new Array(0);
+		return derived([onde, this.f0, this.h0], ([onde, f0, h0]) => {
+			if (harmo.length != onde.harmo.length) {
+				harmo = new Array(onde.harmo.length);
+				for (let i = 0; i < onde.harmo.length; i++) {
+					harmo[i] = new Array(2);
+				}
+			}
+			const o: Onde = {
+				freq: onde.freq,
+				harmo
+			};
+
 			for (let i = 0; i < onde.harmo.length; i++) {
 				let x = (onde.freq * i) / f0;
 				o.harmo[i][0] = ((x * h0) / Math.sqrt(1 + x * x)) * onde.harmo[i][0];

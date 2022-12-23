@@ -1,3 +1,5 @@
+import { derived, type Readable } from 'svelte/store';
+
 export interface Onde {
 	freq: number;
 	harmo: number[][];
@@ -31,13 +33,17 @@ export function maxAmp(onde: Onde) {
 	return m;
 }
 
-export function getHarmosFreqs(onde: Onde) {
-	let o = new Array(onde.harmo.length);
-	o[0] = 1e-100;
-	for (let i = 1; i < onde.harmo.length; i++) {
-		o[i] = onde.freq * i;
-	}
-	return o;
+export function getHarmosFreqs(onde: Readable<Onde>) {
+	let o = new Array();
+	return derived(onde, (onde) => {
+		if (o.length != onde.harmo.length) o = new Array(onde.harmo.length);
+
+		o[0] = 1e-100;
+		for (let i = 1; i < onde.harmo.length; i++) {
+			o[i] = onde.freq * i;
+		}
+		return o;
+	});
 }
 
 export function getHarmosFreqsLog(onde: Onde) {

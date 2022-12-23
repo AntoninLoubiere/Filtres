@@ -22,6 +22,31 @@ export function logspace(start: number, end: number): Readable<number[]> {
 	});
 }
 
+export function linspace_store(
+	start: Readable<number>,
+	end: Readable<number>,
+	ratio = 1
+): Readable<number[]> {
+	return derived([precision, start, end], ([pres, start, end]) => {
+		const p = pres * ratio;
+		let a = new Array(p + 1);
+		for (let i = 0; i <= p; i++) {
+			a[i] = (i / p) * (end - start) + start;
+		}
+		return a;
+	});
+}
+
+export function logspace_store(start: Readable<number>, end: Readable<number>): Readable<number[]> {
+	return derived([precision, start, end], ([pres, start, end]) => {
+		let a = new Array(pres + 1);
+		for (let i = 0; i <= pres; i++) {
+			a[i] = Math.pow(10, (i / pres) * (end - start) + start);
+		}
+		return a;
+	});
+}
+
 const numberFormatterCompact = Intl.NumberFormat(undefined, {
 	notation: 'compact'
 });

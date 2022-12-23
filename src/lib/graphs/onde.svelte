@@ -14,7 +14,7 @@
 	$: yMin = -yScale + $onde.harmo[0][0];
 	$: yMax = yScale + $onde.harmo[0][0];
 
-	$: resultOnde = $filter.apply($onde);
+	$: resultOnde = $filter.apply(onde);
 </script>
 
 <Graph ratio={3} title="Sortie">

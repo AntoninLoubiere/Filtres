@@ -12,3 +12,10 @@ for (let i = 0; i < 25; i++) {
 harmo[1][0] = 1;
 // Should only be written by the dashboard !
 export const onde: Writable<Onde> = writable({ freq: 1000, harmo });
+
+export const gain_start = writable(0);
+export const gain_end = writable(10000);
+export const db_start = writable(-2);
+export const db_end = writable(7);
+export const gain_db_start = writable(-100);
+export const gain_db_end = writable(10);

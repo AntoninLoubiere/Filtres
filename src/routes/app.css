@@ -40,3 +40,9 @@ body {
 	text-anchor: middle;
 	font-size: 3.5px;
 }
+
+/* input:invalid {
+	color: #dc2626;
+	outline-color: #dc2626;
+	box-shadow: #dc2626 0px 0px .25rem;
+} */

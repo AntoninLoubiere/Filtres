@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { pointsToPath } from '$lib/grapher';
 	import { getHarmosFreqs, getHarmosNormalisedAmp, type Onde } from '$lib/onde';
-	import { linspace } from '$lib/utils';
-	import { filter, onde } from '$lib/utils-stores';
+	import { linspace_store } from '$lib/utils';
+	import { filter, gain_end, gain_start, onde } from '$lib/utils-stores';
 	import Graph from './graph.svelte';
 	import Harmos from './harmos.svelte';
 	import XAxis from './xAxis.svelte';
 	import YAxis from './yAxis.svelte';
 
-	let freqs = linspace(0, 10000);
-	$: gain = $filter.gain($freqs);
+	let freqs = linspace_store(gain_start, gain_end);
+	$: gain = $filter.gain(freqs);
 
-	$: harmoFreq = getHarmosFreqs($onde);
+	let harmoFreq = getHarmosFreqs(onde);
 	$: harmosGain = $filter.gain(harmoFreq);
 
 	$: h0 = $filter.h0;
@@ -22,7 +22,7 @@
 	<Graph title="Gain">
 		<Harmos
 			baseX={$freqs}
-			x={harmoFreq}
+			x={$harmoFreq}
 			y={$harmosGain}
 			min_y={0}
 			max_y={maxY}
