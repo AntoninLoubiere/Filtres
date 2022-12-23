@@ -3,9 +3,9 @@
 	import GainDb from '$lib/graphs/gainDb.svelte';
 	import Onde from '$lib/graphs/onde.svelte';
 	import Phase from '$lib/graphs/phase.svelte';
+	import Dashboard from '$lib/dashboards/dashboard.svelte';
 
 	import './app.css';
-	import Dashboard from '$lib/dashboards/dashboard.svelte';
 </script>
 
 <div class="grid">

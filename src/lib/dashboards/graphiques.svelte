@@ -56,7 +56,7 @@
 
 	<div class="graph-params">
 		<h4>Sortie</h4>
-		Nombre de période à afficher <input
+		Nombre de période à afficher<input
 			type="number"
 			size="1"
 			bind:value={$nb_period}
