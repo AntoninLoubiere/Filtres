@@ -26,7 +26,7 @@ export class LowPassFirstFilter extends BaseFilter {
 			if (a.length != freqs.length) a = new Array(freqs.length);
 
 			for (let i = 0; i < freqs.length; i++) {
-				let x = freqs[i] / f0;
+				const x = freqs[i] / f0;
 				a[i] = h0 / Math.sqrt(1 + x * x);
 			}
 			return a;
@@ -38,7 +38,7 @@ export class LowPassFirstFilter extends BaseFilter {
 		return derived([freqs, this.f0], ([freqs, f0]) => {
 			if (a.length != freqs.length) a = new Array(freqs.length);
 			for (let i = 0; i < freqs.length; i++) {
-				let x = freqs[i] / f0;
+				const x = freqs[i] / f0;
 				a[i] = -Math.atan(x);
 			}
 			return a;
@@ -60,7 +60,7 @@ export class LowPassFirstFilter extends BaseFilter {
 			};
 
 			for (let i = 0; i < onde.harmo.length; i++) {
-				let x = (onde.freq * i) / f0;
+				const x = (onde.freq * i) / f0;
 				o.harmo[i][0] = (h0 / Math.sqrt(1 + x * x)) * onde.harmo[i][0];
 				o.harmo[i][1] = onde.harmo[i][1] - Math.atan(x);
 			}
@@ -80,7 +80,7 @@ export class HighPassFirstFilter extends BaseFilter {
 			if (a.length != freqs.length) a = new Array(freqs.length);
 
 			for (let i = 0; i < freqs.length; i++) {
-				let x = freqs[i] / f0;
+				const x = freqs[i] / f0;
 				a[i] = (x * h0) / Math.sqrt(1 + x * x);
 			}
 			return a;
@@ -92,7 +92,7 @@ export class HighPassFirstFilter extends BaseFilter {
 		return derived([freqs, this.f0], ([freqs, f0]) => {
 			if (a.length != freqs.length) a = new Array(freqs.length);
 			for (let i = 0; i < freqs.length; i++) {
-				let x = freqs[i] / f0;
+				const x = freqs[i] / f0;
 				a[i] = Math.PI / 2 - Math.atan(x);
 			}
 			return a;
@@ -114,7 +114,7 @@ export class HighPassFirstFilter extends BaseFilter {
 			};
 
 			for (let i = 0; i < onde.harmo.length; i++) {
-				let x = (onde.freq * i) / f0;
+				const x = (onde.freq * i) / f0;
 				o.harmo[i][0] = ((x * h0) / Math.sqrt(1 + x * x)) * onde.harmo[i][0];
 				o.harmo[i][1] = onde.harmo[i][1] - Math.atan(x) + Math.PI / 2;
 			}

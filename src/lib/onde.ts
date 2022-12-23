@@ -34,7 +34,7 @@ export function maxAmp(onde: Onde) {
 }
 
 export function getHarmosFreqs(onde: Readable<Onde>) {
-	let o = new Array();
+	let o: number[] = [];
 	return derived(onde, (onde) => {
 		if (o.length != onde.harmo.length) o = new Array(onde.harmo.length);
 
@@ -47,7 +47,7 @@ export function getHarmosFreqs(onde: Readable<Onde>) {
 }
 
 export function getHarmosFreqsLog(onde: Onde) {
-	let o = new Array(onde.harmo.length);
+	const o = new Array(onde.harmo.length);
 	o[0] = -100;
 	const base_f = Math.log10(onde.freq);
 	for (let i = 1; i < onde.harmo.length; i++) {
@@ -58,7 +58,7 @@ export function getHarmosFreqsLog(onde: Onde) {
 
 export function getHarmosNormalisedAmp(onde: Onde) {
 	const max = maxAmp(onde);
-	let o = new Array(onde.harmo.length);
+	const o = new Array(onde.harmo.length);
 	for (let i = 0; i < onde.harmo.length; i++) {
 		o[i] = onde.harmo[i][0] / max;
 	}

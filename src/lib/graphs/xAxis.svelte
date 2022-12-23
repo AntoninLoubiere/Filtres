@@ -4,7 +4,7 @@
 	import { getContext } from 'svelte';
 
 	export let x: number[];
-	export let title: string = '';
+	export let title = '';
 
 	// @ts-expect-error Ignore unknown warning
 	let ratio = getContext(GRAPH_KEY)?.ratio || 3;

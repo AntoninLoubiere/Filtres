@@ -5,7 +5,7 @@ import type { Onde } from './onde';
 export const precision = writable(200);
 export const filter: Writable<BaseFilter> = writable(new LowPassFirstFilter(1000, 1));
 
-let harmo = [[0, 0]];
+const harmo = [[0, 0]];
 for (let i = 0; i < 25; i++) {
 	harmo.push([0, 0]);
 }
@@ -19,3 +19,4 @@ export const db_start = writable(-2);
 export const db_end = writable(7);
 export const gain_db_start = writable(-100);
 export const gain_db_end = writable(10);
+export const nb_period = writable(3);

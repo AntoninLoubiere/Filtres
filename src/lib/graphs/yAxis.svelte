@@ -3,7 +3,7 @@
 
 	export let min_y: number;
 	export let max_y: number;
-	export let title: string = '';
+	export let title = '';
 
 	$: dy = max_y - min_y;
 	let step: number;

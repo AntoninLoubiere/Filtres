@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { pointsToPath } from '$lib/grapher';
-	import { getHarmosFreqs, getHarmosNormalisedAmp, type Onde } from '$lib/onde';
+	import { getHarmosFreqs, getHarmosNormalisedAmp } from '$lib/onde';
 	import { linspace_store } from '$lib/utils';
 	import { filter, gain_end, gain_start, onde } from '$lib/utils-stores';
 	import Graph from './graph.svelte';

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { pointsToPath } from '$lib/grapher';
 	import { getHarmosFreqs, getHarmosFreqsLog, getHarmosNormalisedAmp } from '$lib/onde';
-	import { linspace, linspace_store, logspace, logspace_store } from '$lib/utils';
+	import { linspace_store, logspace_store } from '$lib/utils';
 	import { db_end, db_start, filter, onde } from '$lib/utils-stores';
 	import Graph from './graph.svelte';
 	import Harmos from './harmos.svelte';

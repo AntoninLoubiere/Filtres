@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { pointsToLogPath } from '$lib/grapher';
-	import { linspace, linspace_store, logspace, logspace_store } from '$lib/utils';
+	import { linspace_store, logspace_store } from '$lib/utils';
 	import { db_end, db_start, filter, gain_db_end, gain_db_start, onde } from '$lib/utils-stores';
 	import Graph from './graph.svelte';
 	import XAxis from '$lib/graphs/xAxis.svelte';

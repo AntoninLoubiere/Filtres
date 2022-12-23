@@ -6,7 +6,8 @@
 		gain_start,
 		gain_db_end,
 		gain_db_start,
-		precision
+		precision,
+		nb_period
 	} from '$lib/utils-stores';
 </script>
 
@@ -51,6 +52,17 @@
 			dB à <input type="number" size="4" bind:value={$gain_db_end} min={$gain_db_start} step="10" />
 			dB
 		</div>
+	</div>
+
+	<div class="graph-params">
+		<h4>Sortie</h4>
+		Nombre de période à afficher <input
+			type="number"
+			size="1"
+			bind:value={$nb_period}
+			min={0}
+			step=".2"
+		/>
 	</div>
 </div>
 

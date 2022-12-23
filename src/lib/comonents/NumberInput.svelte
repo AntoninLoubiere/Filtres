@@ -7,8 +7,8 @@
 
 	export let value: number;
 	export let label: string;
-	export let suffix: string = '';
-	export let size: number = 5;
+	export let suffix = '';
+	export let size = 5;
 	export let disable0 = true;
 	export let vertical = false;
 
