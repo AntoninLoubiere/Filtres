@@ -12,8 +12,10 @@
 	export let disable0 = true;
 	export let vertical = false;
 
-	$: if (disable0 && value == 0) {
-		value = 1e-20;
+	function update0() {
+		if (disable0 && value == 0) {
+			value = 1e-20;
+		}
 	}
 </script>
 
@@ -26,8 +28,10 @@
 		{step}
 		bind:value
 		orient={vertical ? 'vertical' : undefined}
+		on:input={update0}
+		on:change={update0}
 	/>
-	<input type="number" {min} {max} {step} bind:value {size} />
+	<input type="number" {min} {max} {step} bind:value {size} on:change={update0} />
 	{suffix}
 </div>
 

@@ -15,7 +15,8 @@
 	$: harmosGain = $filter.gain(harmoFreq);
 
 	$: h0 = $filter.h0;
-	$: maxY = Math.abs($h0) * 1.1; // +10%;
+	$: max_gain = $filter.max_gain();
+	$: maxY = $max_gain * 1.1; // +10%;
 </script>
 
 <div>
