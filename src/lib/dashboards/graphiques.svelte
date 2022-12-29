@@ -30,7 +30,7 @@
 	</div>
 
 	<div class="graph-params">
-		<h4>Diagramme de Bode - Phase</h4>
+		<h4>Diagrammes de Bode</h4>
 		<div>
 			Fréquence logarithmique de <input
 				type="number"

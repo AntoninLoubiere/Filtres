@@ -23,7 +23,7 @@
 </script>
 
 <div>
-	<Graph title="Phase">
+	<Graph title="Diagramme de Bode Phase">
 		<Harmos
 			baseX={$db}
 			x={getHarmosFreqsLog($onde)}

@@ -21,7 +21,7 @@
 </script>
 
 <div>
-	<Graph title="Diagramme de Bode">
+	<Graph title="Diagramme de Bode Gain">
 		<Harmos
 			baseX={$db}
 			x={$harmoFreq}
